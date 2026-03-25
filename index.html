@@ -160,7 +160,7 @@
   .award-item {
     font-size: 13px;
     letter-spacing: 0.06em;
-    color: rgba(250,247,242,0.6);
+    color: var(--dark);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -223,7 +223,7 @@
 
   .hero-img-placeholder p {
     font-size: 13px;
-    color: var(--taupe);
+    color: var(--dark);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     opacity: 0.6;
@@ -349,7 +349,7 @@
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    color: var(--taupe);
+    color: var(--dark);
     opacity: 0.5;
   }
 
@@ -740,7 +740,7 @@
 
   .btn-secondary {
     border: 1px solid var(--taupe);
-    color: var(--taupe);
+    color: var(--dark);
     text-decoration: none;
     padding: 18px 48px;
     font-size: 13px;
@@ -824,11 +824,13 @@
 
     /* HERO */
     .hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 40px 20px 32px; }
     /* バッジ4個横並び - サイズ縮小 */
-    .hero-badges { flex-wrap: nowrap !important; overflow-x: visible !important; gap: 8px !important; justify-content: center !important; }
-    .hero-badges > div { width: 68px !important; }
-    .hero-badges > div svg { width: 68px !important; height: 68px !important; }
+    .hero-badges { flex-wrap: nowrap !important; gap: 6px !important; justify-content: space-between !important; width: 100% !important; }
+    .hero-badges > div { flex: 1 !important; }
+    .hero-badges > div svg { width: 64px !important; height: 64px !important; }
+    /* HEROダーク/ホワイトブロックのモバイルpadding */
+    .hero-dark-block { padding: 96px 20px 32px !important; max-width: 100% !important; }
+    .hero-white-block { padding: 24px 20px 40px !important; }
     .hero-right { height: 280px; }
     .hero-eyebrow { font-size: 13px; }
     .hero-h1 { font-size: 28px !important; white-space: normal; line-height: 1.5; }
@@ -993,106 +995,45 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero" style="grid-template-columns:1fr;position:relative;">
-  <div class="hero-left" style="position:relative;z-index:1;max-width:640px;padding-bottom:48px;">
-    <!-- ダーク背景（バッジの上まで） -->
-    <div id="hero-bg" style="position:absolute;inset:0;z-index:0;overflow:hidden;">
-      <img src="img_hero.jpg" alt="施術風景" style="width:100%;height:100%;object-fit:cover;object-position:center center;">
-      <div style="position:absolute;inset:0;background:rgba(28,20,16,0.78);"></div>
+<section style="display:flex;flex-direction:column;">
+
+  <!-- ① ダーク背景エリア（テキスト＋バッジ） -->
+  <div style="background:url('img_hero.jpg') center center/cover no-repeat;position:relative;">
+    <div style="position:absolute;inset:0;background:rgba(28,20,16,0.78);"></div>
+    <div style="position:relative;z-index:1;padding:104px 80px 48px;max-width:760px;" class="hero-dark-block">
+      <div class="hero-eyebrow">Private Nail Salon<br>千葉ニュータウン</div>
+      <h1 class="hero-h1">
+        プロのネイリストが<br>
+        技術を学びに来る、<br>
+        <em>プライベートサロン</em>
+      </h1>
+      <p class="hero-sub">
+        全日本ネイリスト選手権 関東大会 優勝。<br>
+        ジェルメーカー公認講師が、<br>
+        あなたの爪だけのために施術します。
+      </p>
+      <!-- 受賞バッジ -->
+      <div class="hero-badges" style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;margin-bottom:0;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:88px;"><svg width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="bg1" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#3D3028"/><stop offset="100%" stop-color="#1E1510"/></radialGradient><clipPath id="cp1"><circle cx="44" cy="44" r="40"/></clipPath></defs><circle cx="44" cy="44" r="43" fill="none" stroke="#B8956A" stroke-width="1"/><circle cx="44" cy="44" r="40" fill="url(#bg1)"/><circle cx="44" cy="44" r="35" fill="none" stroke="#B8956A" stroke-width="0.6" stroke-dasharray="2,3"/><g clip-path="url(#cp1)"><text x="44" y="44" text-anchor="middle" dominant-baseline="central" font-size="20" fill="#C8A87A" font-family="'Playfair Display',serif" font-weight="500">優勝</text></g></svg><div style="text-align:center;line-height:1.5;"><div style="font-size:9px;color:var(--accent);">全日本</div><div style="font-size:9px;color:var(--accent);">ネイリスト選手権</div><div style="font-size:9px;color:rgba(250,247,242,0.6);">関東大会</div></div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:88px;"><svg width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="bg2" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#3D3028"/><stop offset="100%" stop-color="#1E1510"/></radialGradient><clipPath id="cp2"><circle cx="44" cy="44" r="40"/></clipPath></defs><circle cx="44" cy="44" r="43" fill="none" stroke="#B8956A" stroke-width="1"/><circle cx="44" cy="44" r="40" fill="url(#bg2)"/><circle cx="44" cy="44" r="35" fill="none" stroke="#B8956A" stroke-width="0.6" stroke-dasharray="2,3"/><g clip-path="url(#cp2)"><text x="44" y="44" text-anchor="middle" dominant-baseline="central" font-size="17" fill="#C8A87A" font-family="'Playfair Display',serif" font-weight="500">最優秀賞</text></g></svg><div style="text-align:center;line-height:1.5;"><div style="font-size:9px;color:var(--accent);">ヒューマンカップ</div><div style="font-size:9px;color:var(--accent);">ミックスメディア</div><div style="font-size:9px;color:rgba(250,247,242,0.6);">アート部門</div></div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:88px;"><svg width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="bg3" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#3D3028"/><stop offset="100%" stop-color="#1E1510"/></radialGradient><clipPath id="cp3"><circle cx="44" cy="44" r="40"/></clipPath></defs><circle cx="44" cy="44" r="43" fill="none" stroke="#B8956A" stroke-width="1"/><circle cx="44" cy="44" r="40" fill="url(#bg3)"/><circle cx="44" cy="44" r="35" fill="none" stroke="#B8956A" stroke-width="0.6" stroke-dasharray="2,3"/><g clip-path="url(#cp3)"><text x="44" y="44" text-anchor="middle" dominant-baseline="central" font-size="17" fill="#C8A87A" font-family="'Playfair Display',serif" font-weight="500">特別賞</text></g></svg><div style="text-align:center;line-height:1.5;"><div style="font-size:9px;color:var(--accent);">東京ビューティー</div><div style="font-size:9px;color:var(--accent);">コングレス</div><div style="font-size:9px;color:rgba(250,247,242,0.6);">木下ユミ杯</div></div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:88px;"><svg width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="bg4" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#3D3028"/><stop offset="100%" stop-color="#1E1510"/></radialGradient><clipPath id="cp4"><circle cx="44" cy="44" r="40"/></clipPath></defs><circle cx="44" cy="44" r="43" fill="none" stroke="#B8956A" stroke-width="1"/><circle cx="44" cy="44" r="40" fill="url(#bg4)"/><circle cx="44" cy="44" r="35" fill="none" stroke="#B8956A" stroke-width="0.6" stroke-dasharray="2,3"/><g clip-path="url(#cp4)"><text x="44" y="38" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#C8A87A" font-family="'Playfair Display',serif" font-weight="500">2年連続</text><text x="44" y="54" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#C8A87A" font-family="'Playfair Display',serif" font-weight="500">受賞</text></g></svg><div style="text-align:center;line-height:1.5;"><div style="font-size:9px;color:var(--accent);font-family:'Jost',sans-serif;">TOP EDUCATOR</div><div style="font-size:9px;color:var(--accent);font-family:'Jost',sans-serif;">OF THE YEAR</div><div style="font-size:9px;color:rgba(250,247,242,0.6);font-family:'Jost',sans-serif;">Putiel</div></div></div>
+      </div>
     </div>
-    <div class="hero-eyebrow">Private Nail Salon<br>千葉ニュータウン</div>
-    <h1 class="hero-h1">
-      プロのネイリストが<br>
-      技術を学びに来る、<br>
-      <em>プライベートサロン</em>
-    </h1>
-    <p class="hero-sub">
-      全日本ネイリスト選手権 関東大会 優勝。<br>
-      ジェルメーカー公認講師が、<br>
-      あなたの爪だけのために施術します。
-    </p>
-    </div><!-- /hero-bg end -->
+  </div>
 
-    <!-- 受賞バッジ（背景内） -->
-    <div class="hero-badges" style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:0;align-items:flex-start;padding-bottom:32px;">
-
-      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:88px;">
-        <svg width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg">
-          <defs><radialGradient id="bg1" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#3D3028"/><stop offset="100%" stop-color="#1E1510"/></radialGradient><clipPath id="cp1"><circle cx="44" cy="44" r="40"/></clipPath></defs>
-          <circle cx="44" cy="44" r="43" fill="none" stroke="#B8956A" stroke-width="1"/>
-          <circle cx="44" cy="44" r="40" fill="url(#bg1)"/>
-          <circle cx="44" cy="44" r="35" fill="none" stroke="#B8956A" stroke-width="0.6" stroke-dasharray="2,3"/>
-          <g clip-path="url(#cp1)"><text x="44" y="44" text-anchor="middle" dominant-baseline="central" font-size="20" fill="#C8A87A" font-family="'Playfair Display',serif" font-weight="500">優勝</text></g>
-        </svg>
-        <div style="text-align:center;line-height:1.5;">
-          <div style="font-size:9px;color:var(--accent);letter-spacing:0.06em;font-family:'Zen Kaku Gothic New',sans-serif;">全日本</div>
-          <div style="font-size:9px;color:var(--accent);letter-spacing:0.06em;font-family:'Zen Kaku Gothic New',sans-serif;">ネイリスト選手権</div>
-          <div style="font-size:9px;color:var(--light-text);letter-spacing:0.06em;">関東大会</div>
-        </div>
-      </div>
-
-      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:88px;">
-        <svg width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg">
-          <defs><radialGradient id="bg2" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#3D3028"/><stop offset="100%" stop-color="#1E1510"/></radialGradient><clipPath id="cp2"><circle cx="44" cy="44" r="40"/></clipPath></defs>
-          <circle cx="44" cy="44" r="43" fill="none" stroke="#B8956A" stroke-width="1"/>
-          <circle cx="44" cy="44" r="40" fill="url(#bg2)"/>
-          <circle cx="44" cy="44" r="35" fill="none" stroke="#B8956A" stroke-width="0.6" stroke-dasharray="2,3"/>
-          <g clip-path="url(#cp2)"><text x="44" y="44" text-anchor="middle" dominant-baseline="central" font-size="17" fill="#C8A87A" font-family="'Playfair Display',serif" font-weight="500">最優秀賞</text></g>
-        </svg>
-        <div style="text-align:center;line-height:1.5;">
-          <div style="font-size:9px;color:var(--accent);letter-spacing:0.06em;font-family:'Zen Kaku Gothic New',sans-serif;">ヒューマンカップ</div>
-          <div style="font-size:9px;color:var(--accent);letter-spacing:0.06em;font-family:'Zen Kaku Gothic New',sans-serif;">ミックスメディア</div>
-          <div style="font-size:9px;color:var(--light-text);letter-spacing:0.06em;">アート部門</div>
-        </div>
-      </div>
-
-      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:88px;">
-        <svg width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg">
-          <defs><radialGradient id="bg3" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#3D3028"/><stop offset="100%" stop-color="#1E1510"/></radialGradient><clipPath id="cp3"><circle cx="44" cy="44" r="40"/></clipPath></defs>
-          <circle cx="44" cy="44" r="43" fill="none" stroke="#B8956A" stroke-width="1"/>
-          <circle cx="44" cy="44" r="40" fill="url(#bg3)"/>
-          <circle cx="44" cy="44" r="35" fill="none" stroke="#B8956A" stroke-width="0.6" stroke-dasharray="2,3"/>
-          <g clip-path="url(#cp3)"><text x="44" y="44" text-anchor="middle" dominant-baseline="central" font-size="17" fill="#C8A87A" font-family="'Playfair Display',serif" font-weight="500">特別賞</text></g>
-        </svg>
-        <div style="text-align:center;line-height:1.5;">
-          <div style="font-size:9px;color:var(--accent);letter-spacing:0.06em;font-family:'Zen Kaku Gothic New',sans-serif;">東京ビューティー</div>
-          <div style="font-size:9px;color:var(--accent);letter-spacing:0.06em;font-family:'Zen Kaku Gothic New',sans-serif;">コングレス</div>
-          <div style="font-size:9px;color:var(--light-text);letter-spacing:0.06em;">木下ユミ杯</div>
-        </div>
-      </div>
-
-      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:88px;">
-        <svg width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg">
-          <defs><radialGradient id="bg4" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#3D3028"/><stop offset="100%" stop-color="#1E1510"/></radialGradient><clipPath id="cp4"><circle cx="44" cy="44" r="40"/></clipPath></defs>
-          <circle cx="44" cy="44" r="43" fill="none" stroke="#B8956A" stroke-width="1"/>
-          <circle cx="44" cy="44" r="40" fill="url(#bg4)"/>
-          <circle cx="44" cy="44" r="35" fill="none" stroke="#B8956A" stroke-width="0.6" stroke-dasharray="2,3"/>
-          <g clip-path="url(#cp4)">
-            <text x="44" y="38" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#C8A87A" font-family="'Playfair Display',serif" font-weight="500">2年連続</text>
-            <text x="44" y="54" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#C8A87A" font-family="'Playfair Display',serif" font-weight="500">受賞</text>
-          </g>
-        </svg>
-        <div style="text-align:center;line-height:1.5;">
-          <div style="font-size:9px;color:var(--accent);letter-spacing:0.06em;font-family:'Jost',sans-serif;">TOP EDUCATOR</div>
-          <div style="font-size:9px;color:var(--accent);letter-spacing:0.06em;font-family:'Jost',sans-serif;">OF THE YEAR</div>
-          <div style="font-size:9px;color:var(--light-text);letter-spacing:0.06em;">Putiel</div>
-        </div>
-      </div>
-
-    </div><!-- /badges end -->
-    </div><!-- /hero-bg end -->
-
+  <!-- ② 白背景エリア（箇条書き＋ボタン） -->
+  <div style="background:var(--cream);padding:40px 80px 56px;" class="hero-white-block">
     <div class="hero-awards">
-      <div class="award-item" style="color:var(--dark);">全日本ネイリスト選手権 関東大会 優勝</div>
-      <div class="award-item" style="color:var(--dark);">Putiel TOP EDUCATOR OF THE YEAR 2年連続受賞</div>
-      <div class="award-item" style="color:var(--dark);">ネイルエキスポ / TAT公式セミナー 講師登壇</div>
-      <div class="award-item" style="color:var(--dark);">SNS総フォロワー 1.6万人（業界関係者も多数）</div>
+      <div class="award-item">全日本ネイリスト選手権 関東大会 優勝</div>
+      <div class="award-item">Putiel TOP EDUCATOR OF THE YEAR 2年連続受賞</div>
+      <div class="award-item">ネイルエキスポ / TAT公式セミナー 講師登壇</div>
+      <div class="award-item">SNS総フォロワー 1.6万人（業界関係者も多数）</div>
     </div>
-    <a href="#reservation" class="hero-btn">ご予約はこちら <span>→</span></a>
+    <a href="#reservation" class="hero-btn" style="margin-top:32px;">ご予約はこちら <span>→</span></a>
   </div>
 
 </section>
-
 <!-- PAIN -->
 <section class="pain">
   <div class="section-label">こんなお悩みはありませんか</div>
