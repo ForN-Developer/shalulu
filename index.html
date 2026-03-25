@@ -824,7 +824,11 @@
 
     /* HERO */
     .hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 48px 24px 40px; }
+    .hero-left { padding: 40px 20px 32px; }
+    /* バッジ4個横並び - サイズ縮小 */
+    .hero-badges { flex-wrap: nowrap !important; overflow-x: visible !important; gap: 8px !important; justify-content: center !important; }
+    .hero-badges > div { width: 68px !important; }
+    .hero-badges > div svg { width: 68px !important; height: 68px !important; }
     .hero-right { height: 280px; }
     .hero-eyebrow { font-size: 13px; }
     .hero-h1 { font-size: 28px !important; white-space: normal; line-height: 1.5; }
@@ -918,7 +922,7 @@
     .cred-stats { margin-left: 0 !important; margin-right: 0 !important; }
 
     /* SALON */
-    .salon { padding: 56px 24px !important; grid-template-columns: 1fr; }
+    #salon { padding: 56px 24px !important; grid-template-columns: 1fr !important; }
 
     /* 所持資格 */
     .qual-box { padding: 32px 24px !important; }
@@ -990,11 +994,12 @@
 
 <!-- HERO -->
 <section class="hero" style="grid-template-columns:1fr;position:relative;">
-  <div style="position:absolute;inset:0;z-index:0;">
-    <img src="img_hero.jpg" alt="施術風景" style="width:100%;height:100%;object-fit:cover;object-position:center center;">
-    <div style="position:absolute;inset:0;background:rgba(28,20,16,0.75);"></div>
-  </div>
   <div class="hero-left" style="position:relative;z-index:1;max-width:640px;padding-bottom:48px;">
+    <!-- ダーク背景（バッジの上まで） -->
+    <div id="hero-bg" style="position:absolute;inset:0;z-index:0;overflow:hidden;">
+      <img src="img_hero.jpg" alt="施術風景" style="width:100%;height:100%;object-fit:cover;object-position:center center;">
+      <div style="position:absolute;inset:0;background:rgba(28,20,16,0.78);"></div>
+    </div>
     <div class="hero-eyebrow">Private Nail Salon<br>千葉ニュータウン</div>
     <h1 class="hero-h1">
       プロのネイリストが<br>
@@ -1006,8 +1011,9 @@
       ジェルメーカー公認講師が、<br>
       あなたの爪だけのために施術します。
     </p>
+    </div><!-- /hero-bg end -->
 
-    <!-- 受賞バッジ -->
+    <!-- 受賞バッジ（背景外） -->
     <div class="hero-badges" style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:32px;align-items:flex-start;">
 
       <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:88px;">
@@ -1270,8 +1276,8 @@
 </section>
 
 <!-- SALON -->
-<section class="salon" id="salon" style="padding:120px 80px !important;background:var(--cream);">
-  <div class="salon-content" style="padding:0 !important;">
+<section id="salon" style="padding:120px 80px;background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+  <div class="salon-content">
     <div class="section-label">サロンについて</div>
     <h2>あなただけのための<br>プライベート空間</h2>
     <p style="font-size:15px; color:var(--light-text); line-height:1.8; margin-bottom:24px;">
