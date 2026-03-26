@@ -939,6 +939,41 @@
   }
 </style>
 
+<!-- スクロールアニメーション -->
+<style>
+  .scroll-fade {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .scroll-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .scroll-fade-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .scroll-fade-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .scroll-fade-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .scroll-fade-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .scroll-fade-delay-1 { transition-delay: 0.1s; }
+  .scroll-fade-delay-2 { transition-delay: 0.2s; }
+  .scroll-fade-delay-3 { transition-delay: 0.3s; }
+  .scroll-fade-delay-4 { transition-delay: 0.4s; }
+</style>
+
 <!-- 固定予約ボタン（スマホ） -->
 <style>
   .fixed-reserve-btn {
@@ -1583,6 +1618,48 @@
 </div>
 
 <script>
+  // スクロールアニメーション
+  (function () {
+    // セクションにアニメーションクラスを付与
+    const sections = document.querySelectorAll('section');
+    sections.forEach(function (sec) {
+      // ヒーローセクションは除外（最初から表示）
+      if (sec.classList.contains('hero')) return;
+      sec.classList.add('scroll-fade');
+    });
+
+    // 子要素にも遅延アニメーションを付与
+    const animTargets = [
+      { selector: '.why .why-card', cls: 'scroll-fade', delays: true },
+      { selector: '.menu-item',     cls: 'scroll-fade', delays: true },
+      { selector: '.pain li',       cls: 'scroll-fade', delays: true },
+    ];
+
+    animTargets.forEach(function (t) {
+      document.querySelectorAll(t.selector).forEach(function (el, i) {
+        el.classList.add(t.cls);
+        if (t.delays) {
+          var d = i % 4;
+          if (d > 0) el.classList.add('scroll-fade-delay-' + d);
+        }
+      });
+    });
+
+    // IntersectionObserver でクラス付与
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.scroll-fade, .scroll-fade-left, .scroll-fade-right')
+      .forEach(function (el) { io.observe(el); });
+  })();
+
+  // 固定予約ボタン
   const fixedBtn = document.getElementById('fixedBtn');
   const ctaSection = document.getElementById('reservation');
   const observer = new IntersectionObserver((entries) => {
