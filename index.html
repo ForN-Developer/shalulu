@@ -1410,7 +1410,7 @@
   </div>
 
   <div class="review-track-wrap" style="position:relative;">
-    <div class="review-track" id="reviewTrack" style="display:flex;gap:20px;padding:0 32px;cursor:grab;user-select:none;scroll-snap-type:x mandatory;overflow-x:auto;">
+    <div class="review-track" id="reviewTrack" style="display:flex;gap:20px;padding:0 32px;cursor:grab;user-select:none;scroll-snap-type:x proximity;overflow-x:auto;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;">
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
@@ -1509,7 +1509,6 @@
     gap: 16px;
     transition: background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     scroll-snap-align: center;
-    scroll-snap-stop: always;
     transform: scale(0.88);
     opacity: 0.6;
   }
